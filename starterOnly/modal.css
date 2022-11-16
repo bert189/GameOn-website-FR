@@ -69,6 +69,13 @@ img {
 .topnav .icon {
   display: none;
 }
+.icon .fa-bars {
+  display: block;
+}  
+.icon .fa-xmark {
+  display: none;
+  padding-right: 5px;
+}
 
 @media screen and (max-width: 1080px) {
   .topnav {
@@ -92,7 +99,7 @@ img {
       opacity: 1;
     }
   }
-
+  
   .topnav a.icon {
     position: absolute;
     right: 15px;
@@ -101,8 +108,9 @@ img {
     display: block;
   }
   .topnav a.icon:hover {
-    opacity: 0.6;
+    opacity: 0.7;
   }
+  
   
   .topnav.responsive {
     position: relative;
@@ -111,13 +119,13 @@ img {
     float: unset;
     margin-top: calc(3.5% + 51px);
   }
-  .topnav.responsive .icon {
-    /* position: absolute;
+  /* .topnav.responsive .icon {
+    position: absolute;
     right: 15px;
-    top: 15px; */
-  }
+    top: 15px;
+  } */
   .topnav.responsive .icon:hover {
-    opacity: 0.6;
+    opacity: 0.7;
   }
 
   .topnav.responsive a:not(:last-of-type) {
@@ -173,7 +181,8 @@ main {
   cursor: pointer;
 }
 
-.modal-btn:hover {
+.modal-btn:hover,
+.btn-submit:hover {
   background: #3876ac;
 }
 
@@ -216,7 +225,7 @@ main {
 }
 
 .content {
-  margin: 5% auto;
+  margin: 3% auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -243,6 +252,7 @@ main {
     width: 98%;
     margin: 1% auto;
     margin-top: calc(10% + 51px);
+    height: auto;
   }
 
   .modal-body {
@@ -264,7 +274,7 @@ input {
 }
 .text-control {
   margin: 0;
-  padding: 8px;
+  padding: 8px 12px;
   width: 100%;
   border-radius: 8px;
   font-size: 20px;
@@ -277,11 +287,11 @@ input {
 
 .error-message {
   content: attr(data-error);
-  font-size: 0.4em;
+  font-size: 0.45em;
   color: #e54858;
   display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
+  margin-top: 8px;
+  margin-bottom: 6px;
   padding-left: 7px;
   line-height: 0.3;
   opacity: 0;
@@ -417,6 +427,10 @@ input[data-error]::after {
   border: 0;
   letter-spacing: 1px;
 }
+.btn-submit {
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
 /* custom select styles */
 .custom-select {
   position: relative;
@@ -488,6 +502,22 @@ input[data-error]::after {
   font-weight: normal;
   font-size: 16px;
 }
+
+#inscription {
+  display: none;
+  height: calc(89vh - 51px - (4 * 15px));
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 30vh;
+}
+
+#inscription p {
+  font-weight: 100;
+  font-size: 30px;
+  text-align: center;
+}
+
 .hero-section {
   /* min-height: 93vh; */
   border-radius: 6px;
