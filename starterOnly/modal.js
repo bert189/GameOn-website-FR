@@ -108,6 +108,12 @@ form.addEventListener('submit', function(event){
     playerData.first = first.value;
   }
 
+  first.addEventListener('focus', function() {
+    first.classList.remove('text-control-error');
+    first.nextElementSibling.classList.remove('error-message-visible');
+    error = false;
+  });
+
   // lastname
 
   if (last.value.length < 2) {
@@ -117,6 +123,12 @@ form.addEventListener('submit', function(event){
   } else {
     playerData.last = last.value;
   }
+
+  last.addEventListener('focus', function() {
+    last.classList.remove('text-control-error');
+    last.nextElementSibling.classList.remove('error-message-visible');
+    error = false;
+  });
 
   // email
 
@@ -128,16 +140,18 @@ form.addEventListener('submit', function(event){
     error = true;
   }
 
+  email.addEventListener('focus', function() {
+    email.classList.remove('text-control-error');
+    email.nextElementSibling.classList.remove('error-message-visible');
+    error = false;
+  });
+
   // birthdate
 
-  let today = new Date();
-  let dd = String(today.getDate()).padStart(2, '0');
-  let mm = String(today.getMonth() + 1).padStart(2, '0'); // january index 0
-  let yyyy = today.getFullYear();
+  const playerBirthDate = new Date(birthDate.value);
+  const today = new Date();
 
-  today =  String(yyyy +'-'+ mm +'-'+ dd);
-
-  if (birthDate.value.length < 10 || birthDate.value >= today) {
+  if (birthDate.value === "" || playerBirthDate >= today) {
     birthDate.classList.add('text-control-error');
     birthDate.nextElementSibling.classList.add('error-message-visible');
     error = true;
@@ -145,15 +159,27 @@ form.addEventListener('submit', function(event){
     playerData.birthDate = birthDate.value;
   }
 
+  birthDate.addEventListener('focus', function() {
+    birthDate.classList.remove('text-control-error');
+    birthDate.nextElementSibling.classList.remove('error-message-visible');
+    error = false;
+  });
+
   // tournaments played
 
-  if (Number.isInteger(parseInt(quantity.value))) {
+  if (Number.isInteger(parseInt(quantity.value)) && parseInt(quantity.value) >= 0) {
     playerData.quantity = quantity.value;
   } else {
     quantity.classList.add('text-control-error');
     quantity.nextElementSibling.classList.add('error-message-visible');
     error = true;
   }
+
+  quantity.addEventListener('focus', function() {
+    quantity.classList.remove('text-control-error');
+    quantity.nextElementSibling.classList.remove('error-message-visible');
+    error = false;
+  });
 
   // tournament choice
   
@@ -172,12 +198,28 @@ form.addEventListener('submit', function(event){
     error = true;
   }
 
+  locations.forEach(function(location) {
+    location.addEventListener('change', function() {
+      if (this.checked) {
+        document.getElementById('locations-error').classList.remove('error-message-visible');
+        error = false;
+      }
+    });
+  });
+
   // terms acceptation
 
   if (!terms.checked) {
     document.getElementById('terms-error').classList.add('error-message-visible');
     error = true;
   }
+
+  terms.addEventListener('change', function() {
+    if (this.checked) {
+      document.getElementById('terms-error').classList.remove('error-message-visible');
+      error = false;
+    }
+  });
 
   // newsletter subscription
   
@@ -191,21 +233,13 @@ form.addEventListener('submit', function(event){
   // issue #4 : display inscription confirmed
   
   if (error === false) {
+
+    console.log('inscription validée');
+    console.log(playerData);
+
     form.style.display = 'none';
     inscription.style.display = 'flex';
   }
-  
-
-  // remove input error on focus
-  
-  textControl = document.getElementsByClassName('text-control');
-
-  function clearError() {
-    this.classList.remove('text-control-error');
-    this.nextElementSibling.classList.remove('error-message-visible');
-  }
-
-  textControl.forEach((input) => input.addEventListener('focus', clearError));
 
 
 })

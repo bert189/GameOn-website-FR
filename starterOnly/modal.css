@@ -273,13 +273,13 @@ input {
   outline: none;
 }
 .text-control {
-  margin: 0;
+  margin: -2px;
   padding: 8px 12px;
   width: 100%;
   border-radius: 8px;
   font-size: 20px;
   height: 48px;
-  border: 2px solid transparent;
+  border: 2px solid #232323;
 }
 .text-control-error {
   border: 2px solid #e54858;
@@ -290,8 +290,8 @@ input {
   font-size: 0.45em;
   color: #e54858;
   display: block;
-  margin-top: 8px;
-  margin-bottom: 6px;
+  margin-top: 10px;
+  margin-bottom: 5px;
   padding-left: 7px;
   line-height: 0.3;
   opacity: 0;
@@ -303,6 +303,10 @@ input {
 
 .formData {
   text-align: start;
+}
+
+.formData:last-of-type {
+  padding-top: 5px;
 }
 
 /* .formData[data-error-visible="true"]::after {
@@ -499,8 +503,11 @@ input[data-error]::after {
 }
 /* custom select end */
 .text-label {
-  font-weight: normal;
-  font-size: 16px;
+  font-weight: 300;
+  font-size: 15px;
+}
+p.text-label {
+  padding: 7px 0 5px;
 }
 
 #inscription {
@@ -509,10 +516,11 @@ input[data-error]::after {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding-top: 30vh;
+  padding-top: 20vh;
 }
 
 #inscription p {
+  width: 90%;
   font-weight: 100;
   font-size: 30px;
   text-align: center;
